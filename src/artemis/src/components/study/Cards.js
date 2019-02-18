@@ -7,7 +7,9 @@ import {
   CardContent,
   Typography,
   CardActionArea,
-  Button
+  Button,
+  Paper,
+  LinearProgress
 } from '@material-ui/core'
 import Loading from '../../Loading'
 
@@ -26,14 +28,14 @@ export class Cards extends Component {
   }
 
   render() {
-    const { set, isLoading } = this.state
+    const { set, isLoading, index } = this.state
 
     return isLoading ? (
       <Loading />
     ) : (
       <RouteComponent title={set.title}>
-        <Grid container justify="center">
-          <Grid item style={{ width: '80%' }}>
+        <Grid container justify="center" spacing={16}>
+          <Grid item xs={12} md={8}>
             <Card>
               <CardActionArea
                 onClick={() =>
@@ -52,8 +54,9 @@ export class Cards extends Component {
                 </CardContent>
               </CardActionArea>
             </Card>
-            <Grid container justify="space-between" style={{marginTop: 20}}>
+            <Grid container justify="space-between" style={{ marginTop: 20 }}>
               <Button
+                disabled={index <= 0}
                 onClick={() =>
                   this.setState(prevState => ({
                     index: prevState.index - 1,
@@ -63,8 +66,8 @@ export class Cards extends Component {
               >
                 Back
               </Button>
-
               <Button
+                disabled={index >= set.words.length - 1}
                 onClick={() =>
                   this.setState(prevState => ({
                     index: prevState.index + 1,
@@ -75,6 +78,12 @@ export class Cards extends Component {
                 Next
               </Button>
             </Grid>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Paper style={{padding: 20}}>
+              <Typography variant="headline" style={{marginBottom: 10}}>{`${index + 1}/${set.words.length}`}</Typography>
+              <LinearProgress variant="determinate" value={(index + 1) / set.words.length * 100} />
+            </Paper>
           </Grid>
         </Grid>
       </RouteComponent>

@@ -29,5 +29,12 @@ namespace ArtemisApi.Controllers {
             return Ok (new WordSetDto (wordSet.Id, wordSet.Title, wordSet.Words.Select (word => new WordDto (word.Id, word.Primary, word.Secondary, null))));
         }
 
+        [HttpPost ()]
+        public async Task<IActionResult> Post (WordSet set) {
+            await _context.WordSets.AddAsync (set);
+            await _context.SaveChangesAsync ();
+            return Ok (set);
+        }
+
     }
 }
