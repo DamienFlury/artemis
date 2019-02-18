@@ -80,9 +80,19 @@ export class Cards extends Component {
             </Grid>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper style={{padding: 20}}>
-              <Typography variant="headline" style={{marginBottom: 10}}>{`${index + 1}/${set.words.length}`}</Typography>
-              <LinearProgress variant="determinate" value={(index + 1) / set.words.length * 100} />
+            <Paper style={{ padding: 20 }}>
+              <Typography
+                variant="headline"
+                style={{ marginBottom: 10 }}
+              >{`${index + 1}/${set.words.length}`}</Typography>
+              <LinearProgress
+                variant="determinate"
+                value={((index + 1) / set.words.length) * 100}
+                style={{ marginBottom: 20 }}
+              />
+              <Button variant="contained" color="primary" fullWidth>
+                Done
+              </Button>
             </Paper>
           </Grid>
         </Grid>
