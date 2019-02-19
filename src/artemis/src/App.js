@@ -10,8 +10,6 @@ import NavMenu from './shared/NavMenu'
 import Sets from './components/Sets'
 import SetDetail from './components/SetDetail'
 import { blue } from '@material-ui/core/colors'
-import Cards from './components/study/Cards'
-import Learn from './components/study/Learn'
 
 class App extends Component {
   state = {
@@ -41,11 +39,9 @@ class App extends Component {
         <BrowserRouter>
           <NavMenu onClick={this.toggleTheme}>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/sets" component={Sets} />
-              <Route exact path="/sets/:id" component={SetDetail} />
-              <Route exact path="/cards/:id" component={Cards} />
-              <Route exact path="/learn/:id" component={Learn} />
+              <Route path="/sets/:id" component={SetDetail} />
+              <Route path="/sets" component={Sets} />
+              <Route path="/" component={Home} />
             </Switch>
           </NavMenu>
         </BrowserRouter>

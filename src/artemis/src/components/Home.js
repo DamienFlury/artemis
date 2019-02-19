@@ -1,12 +1,10 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import RouteComponent from '../RouteComponent'
 
 const Home = () => (
   <RouteComponent title="Hello, World!">
-    <Button variant="contained" color="secondary" fullWidth>
-      Click me!
-    </Button>
+    <Typography variant="body1">Artemis is your place for learning foreign languages.</Typography>
   </RouteComponent>
 )
 

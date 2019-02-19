@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Grid } from '@material-ui/core'
 import Api from '../api'
-import LearnTypeCard from './LearnTypeCard'
-import WordTable from './WordTable'
 import RouteComponent from '../RouteComponent'
 import Loading from '../Loading'
+import Cards from './set-detail/Cards'
+import { Switch, Route } from 'react-router-dom'
+import Index from './set-detail/Index'
+import Learn from './set-detail/Learn'
 
 class SetDetail extends Component {
   state = {
@@ -25,37 +26,20 @@ class SetDetail extends Component {
       <Loading />
     ) : (
       <RouteComponent title={set.title}>
-        <Grid container spacing={32}>
-          <Grid item md={3} sm={6} xs={12}>
-            <LearnTypeCard
-              title="Cards"
-              description="Learn your stuff with cards"
-              to={`/cards/${set.id}`}
-            />
-          </Grid>
-          <Grid item md={3} sm={6} xs={12}>
-            <LearnTypeCard
-              title="Learn"
-              description="Learn by typing"
-              to={`/learn/${set.id}`}
-            />
-          </Grid>
-          <Grid item md={3} sm={6} xs={12}>
-            <LearnTypeCard
-              title="Test"
-              description="Test your knowledge"
-              to={`/test/${set.id}`}
-            />
-          </Grid>
-          <Grid item md={3} sm={6} xs={12}>
-            <LearnTypeCard
-              title="Something Else"
-              description="Something else"
-              to={`/something/${set.id}`}
-            />
-          </Grid>
-        </Grid>
-        <WordTable words={this.state.set.words} />
+        <Switch>
+          <Route
+            path="/sets/:id/cards"
+            render={params => <Cards {...params} set={set} />}
+          />
+          <Route
+            path="/sets/:id/learn"
+            render={params => <Learn {...params} set={set} />}
+          />
+          <Route
+            path="/sets/:id"
+            render={params => <Index {...params} set={set} />}
+          />
+        </Switch>
       </RouteComponent>
     )
   }
