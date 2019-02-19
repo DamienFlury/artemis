@@ -11,6 +11,7 @@ import {
   Paper,
   LinearProgress
 } from '@material-ui/core'
+import {Link} from 'react-router-dom'
 import Loading from '../../Loading'
 
 export class Cards extends Component {
@@ -90,7 +91,7 @@ export class Cards extends Component {
                 value={((index + 1) / set.words.length) * 100}
                 style={{ marginBottom: 20 }}
               />
-              <Button variant="contained" color="primary" fullWidth>
+              <Button component={Link} to={`/sets/${set.id}`} variant="contained" color="primary" fullWidth>
                 Done
               </Button>
             </Paper>
