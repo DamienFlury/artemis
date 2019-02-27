@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import HomeIcon from '@material-ui/icons/Home'
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
@@ -152,6 +153,15 @@ class NavMenu extends React.Component {
                 <AssessmentIcon />
               </ListItemIcon>
               <ListItemText primary="My Sets" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button component={Link} to="/create-set">
+              <ListItemIcon>
+                <LibraryAddIcon />
+              </ListItemIcon>
+              <ListItemText primary="New Set" />
             </ListItem>
           </List>
         </Drawer>

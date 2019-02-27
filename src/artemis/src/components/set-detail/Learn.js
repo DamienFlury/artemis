@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Card,
   CardContent,
@@ -18,8 +18,8 @@ export class Learn extends Component {
     this.state = {
       index: 0,
       answer: '',
-      isDisabled: false,
-      items: props.set.words.map(word => ({ word: word, isCorrect: null }))
+      items: props.set.words.map(word => ({ word: word, isCorrect: null })),
+      showEnd: false
     }
   }
 
@@ -28,55 +28,75 @@ export class Learn extends Component {
   }
   handleSubmit = event => {
     event.preventDefault()
-    let isDisabled = false
-    if (this.state.index >= this.props.set.words.length - 2) {
-      isDisabled = true
-    }
+
     const newItems = this.state.items.slice()
-    newItems[this.state.index].isCorrect = this.state.answer === newItems[this.state.index].word.backside
+    newItems[this.state.index].isCorrect =
+      this.state.answer === newItems[this.state.index].word.backside
+
     this.setState(prevState => ({
       index: prevState.index + 1,
-      isDisabled: isDisabled,
       items: newItems
     }))
   }
 
   render() {
-    const { index, isDisabled } = this.state
+    const { index, items } = this.state
     const { classes } = this.props
+    const showEnd = index >= items.length
+
     return (
       <Grid container justify="center" spacing={16}>
         <Grid item xs={12} md={8}>
           <Card>
             <CardContent>
-              <Typography variant="h4" gutterBottom>
-                {this.state.items[index].word.frontside}
-              </Typography>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  style={{ marginBottom: 20 }}
-                  label="Answer"
-                  value={this.state.answer}
-                  onChange={this.handleChange('answer')}
-                  fullWidth
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={isDisabled}
-                  type="submit"
-                  fullWidth
-                >
-                  Okay
-                </Button>
-              </form>
+              {showEnd ? (
+                <div>
+                  <Typography variant="h4" gutterBottom>
+                    Great work!
+                  </Typography>
+                  <Typography variant="h5">
+                    Correct:{' '}
+                    {Math.round(
+                      (items.filter(item => item.isCorrect).length /
+                        items.length) *
+                        100 *
+                        100
+                    ) / 100}
+                    %
+                  </Typography>
+                </div>
+              ) : (
+                <Fragment>
+                  <Typography variant="h4" gutterBottom>
+                    {this.state.items[index].word.frontside}
+                  </Typography>
+                  <form onSubmit={this.handleSubmit}>
+                    <TextField
+                      style={{ marginBottom: 20 }}
+                      label="Answer"
+                      value={this.state.answer}
+                      onChange={this.handleChange('answer')}
+                      fullWidth
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      fullWidth
+                    >
+                      Okay
+                    </Button>
+                  </form>
+                </Fragment>
+              )}
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
           <Paper style={{ padding: 20 }}>
-            <Typography variant="h5" style={{ marginBottom: 10 }}>{`${index +
-              1}/${this.state.items.length}`}</Typography>
+            <Typography variant="h5" style={{ marginBottom: 10 }}>
+              {showEnd ? 'Done' : `${index + 1}/${this.state.items.length}`}
+            </Typography>
             <LinearProgress
               variant="determinate"
               value={((index + 1) / this.state.items.length) * 100}
@@ -99,7 +119,9 @@ export class Learn extends Component {
               variant="determinate"
               style={{ marginBottom: 20 }}
               value={
-                (this.state.items.filter(item => item.isCorrect !== null).filter(item => !item.isCorrect).length /
+                (this.state.items
+                  .filter(item => item.isCorrect !== null)
+                  .filter(item => !item.isCorrect).length /
                   this.state.items.length) *
                 100
               }
