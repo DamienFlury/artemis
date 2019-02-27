@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import RouteComponent from '../RouteComponent'
 import {
   TextField,
@@ -8,31 +8,22 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Typography,
-  Grid,
-  Button
+  Typography
 } from '@material-ui/core'
+import AddWord from './AddWord'
 
-class CreateSet extends Component {
-  state = {
-    frontside: '',
-    backside: '',
-    words: []
-  }
+const CreateSet = () => {
+  const [words, setWords] = useState([])
 
-  render = () => (
+  return (
     <RouteComponent title="Create Set">
       <TextField label="Title" fullWidth />
       <Paper style={{ marginTop: 40 }}>
         <AddWord
-          onClick={(frontside, backside) =>
-            !frontside || !backside
+          onClick={(fSide, bSide) =>
+            !fSide || !bSide
               ? null
-              : this.setState({
-                  words: [{ frontside: frontside, backside: backside }].concat(
-                    this.state.words
-                  )
-                })
+              : setWords([{ frontside: fSide, backside: bSide }].concat(words))
           }
         />
         <Table>
@@ -43,7 +34,7 @@ class CreateSet extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.words.map((word, index) => (
+            {words.map((word, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <Typography>{word.frontside}</Typography>
@@ -61,53 +52,3 @@ class CreateSet extends Component {
 }
 
 export default CreateSet
-
-class AddWord extends Component {
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value })
-  }
-
-  state = {
-    frontside: '',
-    backside: ''
-  }
-
-  handleSubmit = event => {
-    event.preventDefault()
-    this.props.onClick(this.state.frontside, this.state.backside)
-    this.setState({ frontside: '', backside: '' })
-  }
-
-  render = () => (
-    <form onSubmit={this.handleSubmit}>
-      <Grid container spacing={32} style={{ padding: 20 }}>
-        <Grid item sm={5} xs={12}>
-          <TextField
-            label="Frontside"
-            value={this.state.frontside}
-            onChange={this.handleChange('frontside')}
-            fullWidth
-          />
-        </Grid>
-        <Grid item sm={5} xs={12}>
-          <TextField
-            label="Backside"
-            value={this.state.backside}
-            onChange={this.handleChange('backside')}
-            fullWidth
-          />
-        </Grid>
-        <Grid item sm={2} xs={12}>
-          <Button
-            variant="contained"
-            color="secondary"
-            type="submit"
-            fullWidth
-          >
-            Add
-          </Button>
-        </Grid>
-      </Grid>
-    </form>
-  )
-}

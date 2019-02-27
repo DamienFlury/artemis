@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
   MuiThemeProvider,
   CssBaseline,
@@ -12,44 +12,39 @@ import SetDetail from './components/SetDetail'
 import { blue } from '@material-ui/core/colors'
 import CreateSet from './components/CreateSet';
 
-class App extends Component {
-  state = {
-    theme: 'dark'
+const App = () => {
+  const [themeType, setThemeType] = useState('dark')
+
+  const toggleTheme = () => {
+    setThemeType(themeType === 'dark' ? 'light' : 'dark')
   }
 
-  toggleTheme = () => {
-    this.setState(prevState => ({
-      theme: prevState.theme === 'light' ? 'dark' : 'light'
-    }))
-  }
+  const theme = createMuiTheme({
+    palette: {
+      type: themeType,
+      primary: blue
+    },
+    typography: {
+      useNextVariants: true,
+      fontFamily: 'Raleway'
+    }
+  })
 
-  render() {
-    const theme = createMuiTheme({
-      palette: {
-        type: this.state.theme,
-        primary: blue
-      },
-      typography: {
-        useNextVariants: true,
-        fontFamily: 'Raleway'
-      }
-    })
-    return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <NavMenu onClick={this.toggleTheme}>
-            <Switch>
-              <Route path="/create-set" component={CreateSet} />
-              <Route path="/sets/:id" component={SetDetail} />
-              <Route path="/sets" component={Sets} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </NavMenu>
-        </BrowserRouter>
-      </MuiThemeProvider>
-    )
-  }
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <NavMenu onClick={toggleTheme}>
+          <Switch>
+            <Route path="/sets/:id" component={SetDetail} />
+            <Route path="/sets" component={Sets} />
+            <Route path="/create-set" component={CreateSet} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </NavMenu>
+      </BrowserRouter>
+    </MuiThemeProvider>
+  )
 }
 
 export default App
