@@ -1,19 +1,20 @@
-import React, { useState, useRef } from 'react'
-import { Grid, TextField, Button } from '@material-ui/core'
+import React, { useState, useRef } from 'react';
+import { Grid, TextField, Button } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const AddWord = ({ onClick }) => {
-  const [frontside, setFrontside] = useState('')
-  const [backside, setBackside] = useState('')
+  const [frontside, setFrontside] = useState('');
+  const [backside, setBackside] = useState('');
 
-  const frontsideInput = useRef(null)
+  const frontsideInput = useRef(null);
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    onClick(frontside, backside)
-    setFrontside('')
-    setBackside('')
-    frontsideInput.current.focus()
-}
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onClick(frontside, backside);
+    setFrontside('');
+    setBackside('');
+    frontsideInput.current.focus();
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -42,7 +43,11 @@ const AddWord = ({ onClick }) => {
         </Grid>
       </Grid>
     </form>
-  )
-}
+  );
+};
 
-export default AddWord
+AddWord.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
+export default AddWord;

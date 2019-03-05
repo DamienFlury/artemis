@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Card,
   CardActionArea,
@@ -6,11 +6,13 @@ import {
   CardContent,
   Typography,
   withStyles,
-} from '@material-ui/core'
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
+} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const LearnTypeCard = ({ classes, title, description, to }) => (
+const LearnTypeCard = ({
+  classes, title, description, to,
+}) => (
   <Card className={classes.card} style={{ height: '100%' }}>
     <CardActionArea component={Link} to={to}>
       <CardMedia
@@ -26,19 +28,22 @@ const LearnTypeCard = ({ classes, title, description, to }) => (
       </CardContent>
     </CardActionArea>
   </Card>
-)
+);
 
 const styles = {
   card: {
-    display: 'block'
+    display: 'block',
   },
   media: {
-    height: 140
-  }
-}
+    height: 140,
+  },
+};
 
 LearnTypeCard.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+};
 
-export default withStyles(styles)(LearnTypeCard)
+export default withStyles(styles)(LearnTypeCard);

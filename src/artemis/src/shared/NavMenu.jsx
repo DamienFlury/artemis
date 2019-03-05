@@ -1,86 +1,88 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import AssessmentIcon from "@material-ui/icons/Assessment";
-import HomeIcon from "@material-ui/icons/Home";
-import LibraryAddIcon from "@material-ui/icons/LibraryAdd"
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import HomeIcon from '@material-ui/icons/Home';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: "flex"
+    display: 'flex',
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 20
+    marginRight: 20,
   },
   hide: {
-    display: "none"
+    display: 'none',
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: "0 8px",
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth
+    marginLeft: -drawerWidth,
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0
-  }
+    marginLeft: 0,
+  },
 });
 
-const NavMenu = ({ classes, theme, onClick, children }) => {
+const NavMenu = ({
+  classes, theme, onClick, children,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleDrawerOpen = () => setIsOpen(true);
   const handleDrawerClose = () => setIsOpen(false);
@@ -90,7 +92,7 @@ const NavMenu = ({ classes, theme, onClick, children }) => {
       <AppBar
         position="fixed"
         className={classNames(classes.appBar, {
-          [classes.appBarShift]: isOpen
+          [classes.appBarShift]: isOpen,
         })}
       >
         <Toolbar disableGutters={!isOpen}>
@@ -121,12 +123,12 @@ const NavMenu = ({ classes, theme, onClick, children }) => {
         anchor="left"
         open={isOpen}
         classes={{
-          paper: classes.drawerPaper
+          paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
+            {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
@@ -148,10 +150,10 @@ const NavMenu = ({ classes, theme, onClick, children }) => {
             <ListItemText primary="My Sets" />
           </ListItem>
         </List>
-        <Divider></Divider>
+        <Divider />
         <List>
           <ListItem button component={Link} to="/create-set">
-          <ListItemIcon>
+            <ListItemIcon>
               <LibraryAddIcon />
             </ListItemIcon>
             <ListItemText primary="Create Set" />
@@ -160,7 +162,7 @@ const NavMenu = ({ classes, theme, onClick, children }) => {
       </Drawer>
       <main
         className={classNames(classes.content, {
-          [classes.contentShift]: isOpen
+          [classes.contentShift]: isOpen,
         })}
       >
         <div className={classes.drawerHeader} />
@@ -171,8 +173,10 @@ const NavMenu = ({ classes, theme, onClick, children }) => {
 };
 
 NavMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  theme: PropTypes.objectOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(NavMenu);

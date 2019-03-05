@@ -1,34 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   MuiThemeProvider,
   CssBaseline,
-  createMuiTheme
-} from '@material-ui/core'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from './components/Home'
-import NavMenu from './shared/NavMenu'
-import Sets from './components/Sets'
-import SetDetail from './components/SetDetail'
-import { blue } from '@material-ui/core/colors'
+  createMuiTheme,
+} from '@material-ui/core';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { blue } from '@material-ui/core/colors';
+import Home from './components/Home';
+import NavMenu from './shared/NavMenu';
+import Sets from './components/Sets';
+import SetDetail from './components/SetDetail';
 import CreateSet from './components/CreateSet';
 
 const App = () => {
-  const [themeType, setThemeType] = useState('dark')
+  const [themeType, setThemeType] = useState('dark');
 
   const toggleTheme = () => {
-    setThemeType(themeType === 'dark' ? 'light' : 'dark')
-  }
+    setThemeType(themeType === 'dark' ? 'light' : 'dark');
+  };
 
   const theme = createMuiTheme({
     palette: {
       type: themeType,
-      primary: blue
+      primary: blue,
     },
     typography: {
       useNextVariants: true,
-      fontFamily: 'Raleway'
-    }
-  })
+      fontFamily: 'Raleway',
+    },
+  });
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -44,7 +44,7 @@ const App = () => {
         </NavMenu>
       </BrowserRouter>
     </MuiThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

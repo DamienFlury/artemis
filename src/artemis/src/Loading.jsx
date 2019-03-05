@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 
 const Loading = () => (
@@ -7,6 +7,6 @@ const Loading = () => (
       <CircularProgress />
     </Grid>
   </Grid>
-)
+);
 
-export default Loading
+export default Loading;

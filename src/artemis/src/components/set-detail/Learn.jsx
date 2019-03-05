@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -8,19 +8,20 @@ import {
   Grid,
   Paper,
   LinearProgress,
-  withStyles
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
+  withStyles,
+} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Learn = ({ classes, set }) => {
   const [index, setIndex] = useState(0);
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const [items, setItems] = useState(
-    set.words.map(word => ({ word: word, isCorrect: null }))
+    set.words.map(word => ({ word, isCorrect: null })),
   );
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let shouldBeDisabled = false;
     if (index >= set.words.length - 2) {
@@ -64,8 +65,11 @@ const Learn = ({ classes, set }) => {
       </Grid>
       <Grid item xs={12} md={4}>
         <Paper style={{ padding: 20 }}>
-          <Typography variant="h5" style={{ marginBottom: 10 }}>{`${index +
-            1}/${items.length}`}</Typography>
+          <Typography variant="h5" style={{ marginBottom: 10 }}>
+            {`${index
+            + 1}/${items.length}`}
+
+          </Typography>
           <LinearProgress
             variant="determinate"
             value={((index + 1) / items.length) * 100}
@@ -79,7 +83,7 @@ const Learn = ({ classes, set }) => {
             style={{ marginBottom: 20 }}
             classes={{
               colorPrimary: classes.correct,
-              barColorPrimary: classes.correctBar
+              barColorPrimary: classes.correctBar,
             }}
           />
           <LinearProgress
@@ -88,13 +92,13 @@ const Learn = ({ classes, set }) => {
             value={
               (items
                 .filter(item => item.isCorrect !== null)
-                .filter(item => !item.isCorrect).length /
-                items.length) *
-              100
+                .filter(item => !item.isCorrect).length
+                / items.length)
+              * 100
             }
             classes={{
               colorPrimary: classes.incorrect,
-              barColorPrimary: classes.incorrectBar
+              barColorPrimary: classes.incorrectBar,
             }}
           />
           <Button
@@ -112,19 +116,24 @@ const Learn = ({ classes, set }) => {
   );
 };
 
-const styles = theme => ({
+const styles = () => ({
   correct: {
-    backgroundColor: "#b0ff99"
+    backgroundColor: '#b0ff99',
   },
   correctBar: {
-    backgroundColor: "#28b200"
+    backgroundColor: '#28b200',
   },
   incorrect: {
-    backgroundColor: "#ff8c8c"
+    backgroundColor: '#ff8c8c',
   },
   incorrectBar: {
-    backgroundColor: "#ff0000"
-  }
+    backgroundColor: '#ff0000',
+  },
 });
+
+Learn.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  set: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default withStyles(styles)(Learn);

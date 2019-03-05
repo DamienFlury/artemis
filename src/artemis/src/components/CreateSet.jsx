@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import RouteComponent from '../RouteComponent'
+import React, { useState } from 'react';
 import {
   TextField,
   Paper,
@@ -8,22 +7,22 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Typography
-} from '@material-ui/core'
-import AddWord from './AddWord'
+  Typography,
+} from '@material-ui/core';
+import RouteComponent from '../RouteComponent';
+import AddWord from './AddWord';
 
 const CreateSet = () => {
-  const [words, setWords] = useState([])
+  const [words, setWords] = useState([]);
 
   return (
     <RouteComponent title="Create Set">
       <TextField label="Title" fullWidth />
       <Paper style={{ marginTop: 40 }}>
         <AddWord
-          onClick={(fSide, bSide) =>
-            !fSide || !bSide
-              ? null
-              : setWords([{ frontside: fSide, backside: bSide }].concat(words))
+          onClick={(fSide, bSide) => (!fSide || !bSide
+            ? null
+            : setWords([{ frontside: fSide, backside: bSide }].concat(words)))
           }
         />
         <Table>
@@ -35,6 +34,7 @@ const CreateSet = () => {
           </TableHead>
           <TableBody>
             {words.map((word, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <TableRow key={index}>
                 <TableCell>
                   <Typography>{word.frontside}</Typography>
@@ -48,7 +48,7 @@ const CreateSet = () => {
         </Table>
       </Paper>
     </RouteComponent>
-  )
-}
+  );
+};
 
-export default CreateSet
+export default CreateSet;

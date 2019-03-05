@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import { Grid } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import LearnTypeCard from '../LearnTypeCard';
 import WordTable from '../WordTable';
 
-const Index = ({set}) => (
+const Index = ({ set }) => (
   <Fragment>
     <Grid container spacing={32}>
       <Grid item md={3} sm={6} xs={12}>
@@ -37,6 +38,10 @@ const Index = ({set}) => (
     </Grid>
     <WordTable words={set.words} />
   </Fragment>
-)
+);
 
-export default Index
+Index.propTypes = {
+  set: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default Index;

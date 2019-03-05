@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Grid,
   Card,
@@ -7,9 +7,10 @@ import {
   CardActionArea,
   Button,
   Paper,
-  LinearProgress
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
+  LinearProgress,
+} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Cards = ({ set }) => {
   const [index, setIndex] = useState(0);
@@ -55,8 +56,11 @@ const Cards = ({ set }) => {
       </Grid>
       <Grid item xs={12} md={4}>
         <Paper style={{ padding: 20 }}>
-          <Typography variant="h5" style={{ marginBottom: 10 }}>{`${index +
-            1}/${set.words.length}`}</Typography>
+          <Typography variant="h5" style={{ marginBottom: 10 }}>
+            {`${index
+            + 1}/${set.words.length}`}
+
+          </Typography>
           <LinearProgress
             variant="determinate"
             value={((index + 1) / set.words.length) * 100}
@@ -75,6 +79,10 @@ const Cards = ({ set }) => {
       </Grid>
     </Grid>
   );
+};
+
+Cards.propTypes = {
+  set: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Cards;
