@@ -28,7 +28,7 @@ namespace ArtemisApi {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
-            services.AddDbContext<ArtemisContext> (options => options.UseSqlServer (@"Server=(localdb)\MSSQLLocalDb;Database=Artemis;Trusted_Connection=True"));
+            services.AddDbContext<ArtemisContext> (options => options.UseNpgsql (Configuration.GetConnectionString("Postgres")));
 
             services.AddIdentity<ApplicationUser, IdentityRole> (options => options.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<ArtemisContext> ();

@@ -3,8 +3,8 @@ using System;
 using ArtemisApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ArtemisApi.Migrations
 {
@@ -15,15 +15,14 @@ namespace ArtemisApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("ArtemisApi.Data.Entities.Word", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Primary");
 
@@ -51,14 +50,14 @@ namespace ArtemisApi.Migrations
                             Id = 2,
                             Primary = "Frontside #2",
                             Secondary = "Backside #2",
-                            WordSetId = 4
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 3,
                             Primary = "Frontside #3",
                             Secondary = "Backside #3",
-                            WordSetId = 1
+                            WordSetId = 10
                         },
                         new
                         {
@@ -72,21 +71,21 @@ namespace ArtemisApi.Migrations
                             Id = 5,
                             Primary = "Frontside #5",
                             Secondary = "Backside #5",
-                            WordSetId = 2
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 6,
                             Primary = "Frontside #6",
                             Secondary = "Backside #6",
-                            WordSetId = 2
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 7,
                             Primary = "Frontside #7",
                             Secondary = "Backside #7",
-                            WordSetId = 9
+                            WordSetId = 4
                         },
                         new
                         {
@@ -100,133 +99,133 @@ namespace ArtemisApi.Migrations
                             Id = 9,
                             Primary = "Frontside #9",
                             Secondary = "Backside #9",
-                            WordSetId = 8
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 10,
                             Primary = "Frontside #10",
                             Secondary = "Backside #10",
-                            WordSetId = 6
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 11,
                             Primary = "Frontside #11",
                             Secondary = "Backside #11",
-                            WordSetId = 8
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 12,
                             Primary = "Frontside #12",
                             Secondary = "Backside #12",
-                            WordSetId = 4
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 13,
                             Primary = "Frontside #13",
                             Secondary = "Backside #13",
-                            WordSetId = 7
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 14,
                             Primary = "Frontside #14",
                             Secondary = "Backside #14",
-                            WordSetId = 9
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 15,
                             Primary = "Frontside #15",
                             Secondary = "Backside #15",
-                            WordSetId = 1
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 16,
                             Primary = "Frontside #16",
                             Secondary = "Backside #16",
-                            WordSetId = 9
+                            WordSetId = 1
                         },
                         new
                         {
                             Id = 17,
                             Primary = "Frontside #17",
                             Secondary = "Backside #17",
-                            WordSetId = 3
+                            WordSetId = 8
                         },
                         new
                         {
                             Id = 18,
                             Primary = "Frontside #18",
                             Secondary = "Backside #18",
-                            WordSetId = 9
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 19,
                             Primary = "Frontside #19",
                             Secondary = "Backside #19",
-                            WordSetId = 10
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 20,
                             Primary = "Frontside #20",
                             Secondary = "Backside #20",
-                            WordSetId = 7
+                            WordSetId = 1
                         },
                         new
                         {
                             Id = 21,
                             Primary = "Frontside #21",
                             Secondary = "Backside #21",
-                            WordSetId = 6
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 22,
                             Primary = "Frontside #22",
                             Secondary = "Backside #22",
-                            WordSetId = 5
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 23,
                             Primary = "Frontside #23",
                             Secondary = "Backside #23",
-                            WordSetId = 2
+                            WordSetId = 7
                         },
                         new
                         {
                             Id = 24,
                             Primary = "Frontside #24",
                             Secondary = "Backside #24",
-                            WordSetId = 1
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 25,
                             Primary = "Frontside #25",
                             Secondary = "Backside #25",
-                            WordSetId = 8
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 26,
                             Primary = "Frontside #26",
                             Secondary = "Backside #26",
-                            WordSetId = 1
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 27,
                             Primary = "Frontside #27",
                             Secondary = "Backside #27",
-                            WordSetId = 2
+                            WordSetId = 8
                         },
                         new
                         {
@@ -240,126 +239,126 @@ namespace ArtemisApi.Migrations
                             Id = 29,
                             Primary = "Frontside #29",
                             Secondary = "Backside #29",
-                            WordSetId = 7
+                            WordSetId = 1
                         },
                         new
                         {
                             Id = 30,
                             Primary = "Frontside #30",
                             Secondary = "Backside #30",
-                            WordSetId = 7
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 31,
                             Primary = "Frontside #31",
                             Secondary = "Backside #31",
-                            WordSetId = 5
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 32,
                             Primary = "Frontside #32",
                             Secondary = "Backside #32",
-                            WordSetId = 3
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 33,
                             Primary = "Frontside #33",
                             Secondary = "Backside #33",
-                            WordSetId = 6
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 34,
                             Primary = "Frontside #34",
                             Secondary = "Backside #34",
-                            WordSetId = 6
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 35,
                             Primary = "Frontside #35",
                             Secondary = "Backside #35",
-                            WordSetId = 9
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 36,
                             Primary = "Frontside #36",
                             Secondary = "Backside #36",
-                            WordSetId = 10
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 37,
                             Primary = "Frontside #37",
                             Secondary = "Backside #37",
-                            WordSetId = 3
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 38,
                             Primary = "Frontside #38",
                             Secondary = "Backside #38",
-                            WordSetId = 8
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 39,
                             Primary = "Frontside #39",
                             Secondary = "Backside #39",
-                            WordSetId = 6
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 40,
                             Primary = "Frontside #40",
                             Secondary = "Backside #40",
-                            WordSetId = 1
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 41,
                             Primary = "Frontside #41",
                             Secondary = "Backside #41",
-                            WordSetId = 4
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 42,
                             Primary = "Frontside #42",
                             Secondary = "Backside #42",
-                            WordSetId = 2
+                            WordSetId = 8
                         },
                         new
                         {
                             Id = 43,
                             Primary = "Frontside #43",
                             Secondary = "Backside #43",
-                            WordSetId = 5
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 44,
                             Primary = "Frontside #44",
                             Secondary = "Backside #44",
-                            WordSetId = 9
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 45,
                             Primary = "Frontside #45",
                             Secondary = "Backside #45",
-                            WordSetId = 10
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 46,
                             Primary = "Frontside #46",
                             Secondary = "Backside #46",
-                            WordSetId = 2
+                            WordSetId = 3
                         },
                         new
                         {
@@ -373,14 +372,14 @@ namespace ArtemisApi.Migrations
                             Id = 48,
                             Primary = "Frontside #48",
                             Secondary = "Backside #48",
-                            WordSetId = 7
+                            WordSetId = 8
                         },
                         new
                         {
                             Id = 49,
                             Primary = "Frontside #49",
                             Secondary = "Backside #49",
-                            WordSetId = 5
+                            WordSetId = 1
                         },
                         new
                         {
@@ -394,28 +393,28 @@ namespace ArtemisApi.Migrations
                             Id = 51,
                             Primary = "Frontside #51",
                             Secondary = "Backside #51",
-                            WordSetId = 2
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 52,
                             Primary = "Frontside #52",
                             Secondary = "Backside #52",
-                            WordSetId = 7
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 53,
                             Primary = "Frontside #53",
                             Secondary = "Backside #53",
-                            WordSetId = 6
+                            WordSetId = 8
                         },
                         new
                         {
                             Id = 54,
                             Primary = "Frontside #54",
                             Secondary = "Backside #54",
-                            WordSetId = 9
+                            WordSetId = 8
                         },
                         new
                         {
@@ -429,175 +428,175 @@ namespace ArtemisApi.Migrations
                             Id = 56,
                             Primary = "Frontside #56",
                             Secondary = "Backside #56",
-                            WordSetId = 4
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 57,
                             Primary = "Frontside #57",
                             Secondary = "Backside #57",
-                            WordSetId = 2
+                            WordSetId = 8
                         },
                         new
                         {
                             Id = 58,
                             Primary = "Frontside #58",
                             Secondary = "Backside #58",
-                            WordSetId = 1
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 59,
                             Primary = "Frontside #59",
                             Secondary = "Backside #59",
-                            WordSetId = 9
+                            WordSetId = 7
                         },
                         new
                         {
                             Id = 60,
                             Primary = "Frontside #60",
                             Secondary = "Backside #60",
-                            WordSetId = 1
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 61,
                             Primary = "Frontside #61",
                             Secondary = "Backside #61",
-                            WordSetId = 10
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 62,
                             Primary = "Frontside #62",
                             Secondary = "Backside #62",
-                            WordSetId = 3
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 63,
                             Primary = "Frontside #63",
                             Secondary = "Backside #63",
-                            WordSetId = 3
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 64,
                             Primary = "Frontside #64",
                             Secondary = "Backside #64",
-                            WordSetId = 2
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 65,
                             Primary = "Frontside #65",
                             Secondary = "Backside #65",
-                            WordSetId = 1
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 66,
                             Primary = "Frontside #66",
                             Secondary = "Backside #66",
-                            WordSetId = 6
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 67,
                             Primary = "Frontside #67",
                             Secondary = "Backside #67",
-                            WordSetId = 9
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 68,
                             Primary = "Frontside #68",
                             Secondary = "Backside #68",
-                            WordSetId = 1
+                            WordSetId = 3
                         },
                         new
                         {
                             Id = 69,
                             Primary = "Frontside #69",
                             Secondary = "Backside #69",
-                            WordSetId = 10
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 70,
                             Primary = "Frontside #70",
                             Secondary = "Backside #70",
-                            WordSetId = 1
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 71,
                             Primary = "Frontside #71",
                             Secondary = "Backside #71",
-                            WordSetId = 6
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 72,
                             Primary = "Frontside #72",
                             Secondary = "Backside #72",
-                            WordSetId = 6
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 73,
                             Primary = "Frontside #73",
                             Secondary = "Backside #73",
-                            WordSetId = 3
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 74,
                             Primary = "Frontside #74",
                             Secondary = "Backside #74",
-                            WordSetId = 10
+                            WordSetId = 1
                         },
                         new
                         {
                             Id = 75,
                             Primary = "Frontside #75",
                             Secondary = "Backside #75",
-                            WordSetId = 3
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 76,
                             Primary = "Frontside #76",
                             Secondary = "Backside #76",
-                            WordSetId = 4
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 77,
                             Primary = "Frontside #77",
                             Secondary = "Backside #77",
-                            WordSetId = 10
+                            WordSetId = 9
                         },
                         new
                         {
                             Id = 78,
                             Primary = "Frontside #78",
                             Secondary = "Backside #78",
-                            WordSetId = 3
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 79,
                             Primary = "Frontside #79",
                             Secondary = "Backside #79",
-                            WordSetId = 2
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 80,
                             Primary = "Frontside #80",
                             Secondary = "Backside #80",
-                            WordSetId = 6
+                            WordSetId = 7
                         },
                         new
                         {
@@ -611,28 +610,28 @@ namespace ArtemisApi.Migrations
                             Id = 82,
                             Primary = "Frontside #82",
                             Secondary = "Backside #82",
-                            WordSetId = 6
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 83,
                             Primary = "Frontside #83",
                             Secondary = "Backside #83",
-                            WordSetId = 2
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 84,
                             Primary = "Frontside #84",
                             Secondary = "Backside #84",
-                            WordSetId = 2
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 85,
                             Primary = "Frontside #85",
                             Secondary = "Backside #85",
-                            WordSetId = 6
+                            WordSetId = 4
                         },
                         new
                         {
@@ -646,70 +645,70 @@ namespace ArtemisApi.Migrations
                             Id = 87,
                             Primary = "Frontside #87",
                             Secondary = "Backside #87",
-                            WordSetId = 8
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 88,
                             Primary = "Frontside #88",
                             Secondary = "Backside #88",
-                            WordSetId = 8
+                            WordSetId = 2
                         },
                         new
                         {
                             Id = 89,
                             Primary = "Frontside #89",
                             Secondary = "Backside #89",
-                            WordSetId = 4
+                            WordSetId = 1
                         },
                         new
                         {
                             Id = 90,
                             Primary = "Frontside #90",
                             Secondary = "Backside #90",
-                            WordSetId = 6
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 91,
                             Primary = "Frontside #91",
                             Secondary = "Backside #91",
-                            WordSetId = 8
+                            WordSetId = 5
                         },
                         new
                         {
                             Id = 92,
                             Primary = "Frontside #92",
                             Secondary = "Backside #92",
-                            WordSetId = 3
+                            WordSetId = 7
                         },
                         new
                         {
                             Id = 93,
                             Primary = "Frontside #93",
                             Secondary = "Backside #93",
-                            WordSetId = 9
+                            WordSetId = 7
                         },
                         new
                         {
                             Id = 94,
                             Primary = "Frontside #94",
                             Secondary = "Backside #94",
-                            WordSetId = 5
+                            WordSetId = 10
                         },
                         new
                         {
                             Id = 95,
                             Primary = "Frontside #95",
                             Secondary = "Backside #95",
-                            WordSetId = 1
+                            WordSetId = 4
                         },
                         new
                         {
                             Id = 96,
                             Primary = "Frontside #96",
                             Secondary = "Backside #96",
-                            WordSetId = 2
+                            WordSetId = 3
                         },
                         new
                         {
@@ -723,29 +722,28 @@ namespace ArtemisApi.Migrations
                             Id = 98,
                             Primary = "Frontside #98",
                             Secondary = "Backside #98",
-                            WordSetId = 4
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 99,
                             Primary = "Frontside #99",
                             Secondary = "Backside #99",
-                            WordSetId = 9
+                            WordSetId = 6
                         },
                         new
                         {
                             Id = 100,
                             Primary = "Frontside #100",
                             Secondary = "Backside #100",
-                            WordSetId = 4
+                            WordSetId = 7
                         });
                 });
 
             modelBuilder.Entity("ArtemisApi.Data.Entities.WordSet", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Title");
 
@@ -824,8 +822,7 @@ namespace ArtemisApi.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -833,8 +830,7 @@ namespace ArtemisApi.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
@@ -898,8 +894,7 @@ namespace ArtemisApi.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
 
@@ -909,8 +904,7 @@ namespace ArtemisApi.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
