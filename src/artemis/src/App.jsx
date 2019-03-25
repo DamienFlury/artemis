@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MuiThemeProvider,
   CssBaseline,
@@ -22,6 +22,13 @@ const App = () => {
 
   const [token, setToken] = useState('');
 
+  useEffect(() => {
+    const themeTypeFromLocalStorage = localStorage.getItem('themeType');
+    if (themeTypeFromLocalStorage) {
+      setThemeType(themeTypeFromLocalStorage);
+    }
+  });
+
   const login = (email, password) => Api.post('auth', { email, password }).then((response) => {
     setIsLoggedIn(true);
     setToken(response.data.token);
@@ -33,7 +40,9 @@ const App = () => {
   };
 
   const toggleTheme = () => {
-    setThemeType(themeType === 'dark' ? 'light' : 'dark');
+    const nextThemeType = themeType === 'dark' ? 'light' : 'dark';
+    setThemeType(nextThemeType);
+    localStorage.setItem('themeType', nextThemeType);
   };
 
   const theme = createMuiTheme({
