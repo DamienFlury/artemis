@@ -28,6 +28,7 @@ const App = () => {
       useNextVariants: true,
       fontFamily: 'Raleway',
     },
+    spacing: 8,
   });
 
   return (
