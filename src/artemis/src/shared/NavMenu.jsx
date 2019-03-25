@@ -5,21 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AssessmentIcon from '@material-ui/icons/Assessment';
-import HomeIcon from '@material-ui/icons/Home';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import SideBar from './SideBar';
 
 const drawerWidth = 240;
 
@@ -87,6 +80,7 @@ const NavMenu = ({
   const handleDrawerOpen = () => setIsOpen(true);
   const handleDrawerClose = () => setIsOpen(false);
 
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -136,29 +130,7 @@ const NavMenu = ({
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <ListItem button component={Link} to="/">
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component={Link} to="/sets">
-            <ListItemIcon>
-              <AssessmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Sets" />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button component={Link} to="/create-set">
-            <ListItemIcon>
-              <LibraryAddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Create Set" />
-          </ListItem>
-        </List>
+        <SideBar />
       </Drawer>
       <main
         className={classNames(classes.content, {
@@ -173,8 +145,8 @@ const NavMenu = ({
 };
 
 NavMenu.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.object).isRequired,
-  theme: PropTypes.objectOf(PropTypes.object).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  theme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };

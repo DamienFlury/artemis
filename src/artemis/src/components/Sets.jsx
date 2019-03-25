@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Api from '../api';
+import Api from '../Api';
 import RouteComponent from '../RouteComponent';
 import Loading from '../Loading';
 

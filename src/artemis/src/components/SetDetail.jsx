@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Api from '../api';
+import Api from '../Api';
 import RouteComponent from '../RouteComponent';
 import Loading from '../Loading';
 import Cards from './set-detail/Cards';
