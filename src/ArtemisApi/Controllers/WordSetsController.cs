@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ArtemisApi.Data;
 using ArtemisApi.Data.Entities;
 using ArtemisApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ namespace ArtemisApi.Controllers {
             _context = context;
         }
         // GET api/values
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<WordSetDto>> Get () =>
             Ok (_context.WordSets.AsEnumerable ().Select (wordSet => new WordSetDto (wordSet.Id, wordSet.Title)));
@@ -29,7 +31,8 @@ namespace ArtemisApi.Controllers {
             return Ok (new WordSetDto (wordSet.Id, wordSet.Title, wordSet.Words.Select (word => new WordDto (word.Id, word.Primary, word.Secondary, null))));
         }
 
-        [HttpPost ()]
+        [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Post (WordSet set) {
             await _context.WordSets.AddAsync (set);
             await _context.SaveChangesAsync ();

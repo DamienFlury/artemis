@@ -27,16 +27,23 @@ const App = () => {
     if (themeTypeFromLocalStorage) {
       setThemeType(themeTypeFromLocalStorage);
     }
-  });
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    if (tokenFromLocalStorage) {
+      setToken(tokenFromLocalStorage);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const login = (email, password) => Api.post('auth', { email, password }).then((response) => {
     setIsLoggedIn(true);
     setToken(response.data.token);
+    localStorage.setItem('token', response.data.token);
   });
 
   const logout = () => {
     setIsLoggedIn(false);
     setToken('');
+    localStorage.setItem('token', '');
   };
 
   const toggleTheme = () => {

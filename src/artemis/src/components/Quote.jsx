@@ -13,7 +13,7 @@ const fonts = [
   'Shadows Into Light', 'Amatic SC', 'Dancing Script', 'Gloria Hallelujah', 'Indie Flower', 'Satisfy', 'Courgette', 'Handlee',
 ];
 
-const QuoteComponent = () => {
+const Quote = () => {
   const [quote] = useState(quotes[Math.floor(Math.random() * quotes.length)]);
   const [font] = useState(fonts[Math.floor(Math.random() * fonts.length)]);
 
@@ -38,4 +38,4 @@ const QuoteComponent = () => {
   );
 };
 
-export default QuoteComponent;
+export default Quote;

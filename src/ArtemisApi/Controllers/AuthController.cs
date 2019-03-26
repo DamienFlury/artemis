@@ -50,7 +50,7 @@ namespace ArtemisApi.Controllers {
                 _configuration["Tokens:Issuer"],
                 _configuration["Tokens:Audience"],
                 claims,
-                expires : DateTime.UtcNow.AddHours (12),
+                expires : DateTime.UtcNow.AddHours(2),
                 signingCredentials : cred);
 
             var result = new {
